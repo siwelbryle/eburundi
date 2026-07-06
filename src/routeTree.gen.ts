@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -17,6 +18,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 
+const WishlistRoute = WishlistRouteImport.update({
+  id: '/wishlist',
+  path: '/wishlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/products': typeof ProductsRouteWithChildren
+  '/wishlist': typeof WishlistRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/products/$id': typeof ProductsIdRoute
 }
@@ -65,6 +72,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/products': typeof ProductsRouteWithChildren
+  '/wishlist': typeof WishlistRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/products/$id': typeof ProductsIdRoute
 }
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
   '/products': typeof ProductsRouteWithChildren
+  '/wishlist': typeof WishlistRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/products/$id': typeof ProductsIdRoute
 }
@@ -85,10 +94,18 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/products'
+    | '/wishlist'
     | '/dashboard'
     | '/products/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/cart' | '/products' | '/dashboard' | '/products/$id'
+  to:
+    | '/'
+    | '/auth'
+    | '/cart'
+    | '/products'
+    | '/wishlist'
+    | '/dashboard'
+    | '/products/$id'
   id:
     | '__root__'
     | '/'
@@ -96,6 +113,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/cart'
     | '/products'
+    | '/wishlist'
     | '/_authenticated/dashboard'
     | '/products/$id'
   fileRoutesById: FileRoutesById
@@ -106,10 +124,18 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
   ProductsRoute: typeof ProductsRouteWithChildren
+  WishlistRoute: typeof WishlistRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wishlist': {
+      id: '/wishlist'
+      path: '/wishlist'
+      fullPath: '/wishlist'
+      preLoaderRoute: typeof WishlistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products': {
       id: '/products'
       path: '/products'
@@ -191,6 +217,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
   ProductsRoute: ProductsRouteWithChildren,
+  WishlistRoute: WishlistRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
