@@ -22,6 +22,7 @@ import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
 import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated/orders'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedAddressesRouteImport } from './routes/_authenticated/addresses'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
 
 const WishlistRoute = WishlistRouteImport.update({
@@ -88,6 +89,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAddressesRoute = AuthenticatedAddressesRouteImport.update({
+  id: '/addresses',
+  path: '/addresses',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
   id: '/account',
   path: '/account',
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/products': typeof ProductsRouteWithChildren
   '/wishlist': typeof WishlistRoute
   '/account': typeof AuthenticatedAccountRoute
+  '/addresses': typeof AuthenticatedAddressesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/orders': typeof AuthenticatedOrdersRoute
   '/categories/$slug': typeof CategoriesSlugRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/products': typeof ProductsRouteWithChildren
   '/wishlist': typeof WishlistRoute
   '/account': typeof AuthenticatedAccountRoute
+  '/addresses': typeof AuthenticatedAddressesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/orders': typeof AuthenticatedOrdersRoute
   '/categories/$slug': typeof CategoriesSlugRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/products': typeof ProductsRouteWithChildren
   '/wishlist': typeof WishlistRoute
   '/_authenticated/account': typeof AuthenticatedAccountRoute
+  '/_authenticated/addresses': typeof AuthenticatedAddressesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/orders': typeof AuthenticatedOrdersRoute
   '/categories/$slug': typeof CategoriesSlugRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/wishlist'
     | '/account'
+    | '/addresses'
     | '/dashboard'
     | '/orders'
     | '/categories/$slug'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/wishlist'
     | '/account'
+    | '/addresses'
     | '/dashboard'
     | '/orders'
     | '/categories/$slug'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/products'
     | '/wishlist'
     | '/_authenticated/account'
+    | '/_authenticated/addresses'
     | '/_authenticated/dashboard'
     | '/_authenticated/orders'
     | '/categories/$slug'
@@ -296,6 +308,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/addresses': {
+      id: '/_authenticated/addresses'
+      path: '/addresses'
+      fullPath: '/addresses'
+      preLoaderRoute: typeof AuthenticatedAddressesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/account': {
       id: '/_authenticated/account'
       path: '/account'
@@ -308,12 +327,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAccountRoute: typeof AuthenticatedAccountRoute
+  AuthenticatedAddressesRoute: typeof AuthenticatedAddressesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedOrdersRoute: typeof AuthenticatedOrdersRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAccountRoute: AuthenticatedAccountRoute,
+  AuthenticatedAddressesRoute: AuthenticatedAddressesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedOrdersRoute: AuthenticatedOrdersRoute,
 }
