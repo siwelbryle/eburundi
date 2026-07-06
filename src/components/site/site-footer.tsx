@@ -7,7 +7,7 @@ export function SiteFooter() {
         <div className="space-y-3">
           <Logo />
           <p className="max-w-xs text-sm text-muted-foreground">
-            Burundi's multi-vendor marketplace. Discover trusted sellers and shop with confidence.
+            KaramaMarket — Burundi's trusted multi-vendor marketplace. Local sellers, real reviews, fast delivery.
           </p>
           <div className="flex gap-1.5 pt-2">
             <span className="h-2 w-8 rounded-full bg-primary" />
