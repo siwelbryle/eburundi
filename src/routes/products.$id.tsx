@@ -64,7 +64,7 @@ function ProductDetail() {
               )}
             </div>
             <div className="mt-3 grid grid-cols-4 gap-2">
-              {product.gallery.map((g, i) => (
+              {product.gallery.map((g: string, i: number) => (
                 <button
                   key={i}
                   onClick={() => setImg(g)}
