@@ -24,6 +24,18 @@ import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAddressesRouteImport } from './routes/_authenticated/addresses'
 import { Route as AuthenticatedAccountRouteImport } from './routes/_authenticated/account'
+import { Route as AuthenticatedSellerStoreRouteImport } from './routes/_authenticated/seller/store'
+import { Route as AuthenticatedSellerProductsRouteImport } from './routes/_authenticated/seller/products'
+import { Route as AuthenticatedSellerOrdersRouteImport } from './routes/_authenticated/seller/orders'
+import { Route as AuthenticatedSellerAnalyticsRouteImport } from './routes/_authenticated/seller/analytics'
+import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
+import { Route as AuthenticatedAdminStoresRouteImport } from './routes/_authenticated/admin/stores'
+import { Route as AuthenticatedAdminRolesRouteImport } from './routes/_authenticated/admin/roles'
+import { Route as AuthenticatedAdminProductsRouteImport } from './routes/_authenticated/admin/products'
+import { Route as AuthenticatedAdminOrdersRouteImport } from './routes/_authenticated/admin/orders'
+import { Route as AuthenticatedAdminCouponsRouteImport } from './routes/_authenticated/admin/coupons'
+import { Route as AuthenticatedAdminCategoriesRouteImport } from './routes/_authenticated/admin/categories'
+import { Route as AuthenticatedAdminBannersRouteImport } from './routes/_authenticated/admin/banners'
 
 const WishlistRoute = WishlistRouteImport.update({
   id: '/wishlist',
@@ -99,6 +111,76 @@ const AuthenticatedAccountRoute = AuthenticatedAccountRouteImport.update({
   path: '/account',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSellerStoreRoute =
+  AuthenticatedSellerStoreRouteImport.update({
+    id: '/seller/store',
+    path: '/seller/store',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSellerProductsRoute =
+  AuthenticatedSellerProductsRouteImport.update({
+    id: '/seller/products',
+    path: '/seller/products',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSellerOrdersRoute =
+  AuthenticatedSellerOrdersRouteImport.update({
+    id: '/seller/orders',
+    path: '/seller/orders',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSellerAnalyticsRoute =
+  AuthenticatedSellerAnalyticsRouteImport.update({
+    id: '/seller/analytics',
+    path: '/seller/analytics',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminUsersRoute = AuthenticatedAdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminStoresRoute =
+  AuthenticatedAdminStoresRouteImport.update({
+    id: '/admin/stores',
+    path: '/admin/stores',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminRolesRoute = AuthenticatedAdminRolesRouteImport.update({
+  id: '/admin/roles',
+  path: '/admin/roles',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminProductsRoute =
+  AuthenticatedAdminProductsRouteImport.update({
+    id: '/admin/products',
+    path: '/admin/products',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminOrdersRoute =
+  AuthenticatedAdminOrdersRouteImport.update({
+    id: '/admin/orders',
+    path: '/admin/orders',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminCouponsRoute =
+  AuthenticatedAdminCouponsRouteImport.update({
+    id: '/admin/coupons',
+    path: '/admin/coupons',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminCategoriesRoute =
+  AuthenticatedAdminCategoriesRouteImport.update({
+    id: '/admin/categories',
+    path: '/admin/categories',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminBannersRoute =
+  AuthenticatedAdminBannersRouteImport.update({
+    id: '/admin/banners',
+    path: '/admin/banners',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -115,6 +197,18 @@ export interface FileRoutesByFullPath {
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
   '/stores/': typeof StoresIndexRoute
+  '/admin/banners': typeof AuthenticatedAdminBannersRoute
+  '/admin/categories': typeof AuthenticatedAdminCategoriesRoute
+  '/admin/coupons': typeof AuthenticatedAdminCouponsRoute
+  '/admin/orders': typeof AuthenticatedAdminOrdersRoute
+  '/admin/products': typeof AuthenticatedAdminProductsRoute
+  '/admin/roles': typeof AuthenticatedAdminRolesRoute
+  '/admin/stores': typeof AuthenticatedAdminStoresRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/seller/analytics': typeof AuthenticatedSellerAnalyticsRoute
+  '/seller/orders': typeof AuthenticatedSellerOrdersRoute
+  '/seller/products': typeof AuthenticatedSellerProductsRoute
+  '/seller/store': typeof AuthenticatedSellerStoreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -131,6 +225,18 @@ export interface FileRoutesByTo {
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
   '/stores': typeof StoresIndexRoute
+  '/admin/banners': typeof AuthenticatedAdminBannersRoute
+  '/admin/categories': typeof AuthenticatedAdminCategoriesRoute
+  '/admin/coupons': typeof AuthenticatedAdminCouponsRoute
+  '/admin/orders': typeof AuthenticatedAdminOrdersRoute
+  '/admin/products': typeof AuthenticatedAdminProductsRoute
+  '/admin/roles': typeof AuthenticatedAdminRolesRoute
+  '/admin/stores': typeof AuthenticatedAdminStoresRoute
+  '/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/seller/analytics': typeof AuthenticatedSellerAnalyticsRoute
+  '/seller/orders': typeof AuthenticatedSellerOrdersRoute
+  '/seller/products': typeof AuthenticatedSellerProductsRoute
+  '/seller/store': typeof AuthenticatedSellerStoreRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,6 +255,18 @@ export interface FileRoutesById {
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
   '/stores/': typeof StoresIndexRoute
+  '/_authenticated/admin/banners': typeof AuthenticatedAdminBannersRoute
+  '/_authenticated/admin/categories': typeof AuthenticatedAdminCategoriesRoute
+  '/_authenticated/admin/coupons': typeof AuthenticatedAdminCouponsRoute
+  '/_authenticated/admin/orders': typeof AuthenticatedAdminOrdersRoute
+  '/_authenticated/admin/products': typeof AuthenticatedAdminProductsRoute
+  '/_authenticated/admin/roles': typeof AuthenticatedAdminRolesRoute
+  '/_authenticated/admin/stores': typeof AuthenticatedAdminStoresRoute
+  '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
+  '/_authenticated/seller/analytics': typeof AuthenticatedSellerAnalyticsRoute
+  '/_authenticated/seller/orders': typeof AuthenticatedSellerOrdersRoute
+  '/_authenticated/seller/products': typeof AuthenticatedSellerProductsRoute
+  '/_authenticated/seller/store': typeof AuthenticatedSellerStoreRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -167,6 +285,18 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/stores/$slug'
     | '/stores/'
+    | '/admin/banners'
+    | '/admin/categories'
+    | '/admin/coupons'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/roles'
+    | '/admin/stores'
+    | '/admin/users'
+    | '/seller/analytics'
+    | '/seller/orders'
+    | '/seller/products'
+    | '/seller/store'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -183,6 +313,18 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/stores/$slug'
     | '/stores'
+    | '/admin/banners'
+    | '/admin/categories'
+    | '/admin/coupons'
+    | '/admin/orders'
+    | '/admin/products'
+    | '/admin/roles'
+    | '/admin/stores'
+    | '/admin/users'
+    | '/seller/analytics'
+    | '/seller/orders'
+    | '/seller/products'
+    | '/seller/store'
   id:
     | '__root__'
     | '/'
@@ -200,6 +342,18 @@ export interface FileRouteTypes {
     | '/products/$id'
     | '/stores/$slug'
     | '/stores/'
+    | '/_authenticated/admin/banners'
+    | '/_authenticated/admin/categories'
+    | '/_authenticated/admin/coupons'
+    | '/_authenticated/admin/orders'
+    | '/_authenticated/admin/products'
+    | '/_authenticated/admin/roles'
+    | '/_authenticated/admin/stores'
+    | '/_authenticated/admin/users'
+    | '/_authenticated/seller/analytics'
+    | '/_authenticated/seller/orders'
+    | '/_authenticated/seller/products'
+    | '/_authenticated/seller/store'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -322,6 +476,90 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAccountRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/seller/store': {
+      id: '/_authenticated/seller/store'
+      path: '/seller/store'
+      fullPath: '/seller/store'
+      preLoaderRoute: typeof AuthenticatedSellerStoreRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/seller/products': {
+      id: '/_authenticated/seller/products'
+      path: '/seller/products'
+      fullPath: '/seller/products'
+      preLoaderRoute: typeof AuthenticatedSellerProductsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/seller/orders': {
+      id: '/_authenticated/seller/orders'
+      path: '/seller/orders'
+      fullPath: '/seller/orders'
+      preLoaderRoute: typeof AuthenticatedSellerOrdersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/seller/analytics': {
+      id: '/_authenticated/seller/analytics'
+      path: '/seller/analytics'
+      fullPath: '/seller/analytics'
+      preLoaderRoute: typeof AuthenticatedSellerAnalyticsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/users': {
+      id: '/_authenticated/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AuthenticatedAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/stores': {
+      id: '/_authenticated/admin/stores'
+      path: '/admin/stores'
+      fullPath: '/admin/stores'
+      preLoaderRoute: typeof AuthenticatedAdminStoresRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/roles': {
+      id: '/_authenticated/admin/roles'
+      path: '/admin/roles'
+      fullPath: '/admin/roles'
+      preLoaderRoute: typeof AuthenticatedAdminRolesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/products': {
+      id: '/_authenticated/admin/products'
+      path: '/admin/products'
+      fullPath: '/admin/products'
+      preLoaderRoute: typeof AuthenticatedAdminProductsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/orders': {
+      id: '/_authenticated/admin/orders'
+      path: '/admin/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AuthenticatedAdminOrdersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/coupons': {
+      id: '/_authenticated/admin/coupons'
+      path: '/admin/coupons'
+      fullPath: '/admin/coupons'
+      preLoaderRoute: typeof AuthenticatedAdminCouponsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/categories': {
+      id: '/_authenticated/admin/categories'
+      path: '/admin/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AuthenticatedAdminCategoriesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/banners': {
+      id: '/_authenticated/admin/banners'
+      path: '/admin/banners'
+      fullPath: '/admin/banners'
+      preLoaderRoute: typeof AuthenticatedAdminBannersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -330,6 +568,18 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAddressesRoute: typeof AuthenticatedAddressesRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedOrdersRoute: typeof AuthenticatedOrdersRoute
+  AuthenticatedAdminBannersRoute: typeof AuthenticatedAdminBannersRoute
+  AuthenticatedAdminCategoriesRoute: typeof AuthenticatedAdminCategoriesRoute
+  AuthenticatedAdminCouponsRoute: typeof AuthenticatedAdminCouponsRoute
+  AuthenticatedAdminOrdersRoute: typeof AuthenticatedAdminOrdersRoute
+  AuthenticatedAdminProductsRoute: typeof AuthenticatedAdminProductsRoute
+  AuthenticatedAdminRolesRoute: typeof AuthenticatedAdminRolesRoute
+  AuthenticatedAdminStoresRoute: typeof AuthenticatedAdminStoresRoute
+  AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
+  AuthenticatedSellerAnalyticsRoute: typeof AuthenticatedSellerAnalyticsRoute
+  AuthenticatedSellerOrdersRoute: typeof AuthenticatedSellerOrdersRoute
+  AuthenticatedSellerProductsRoute: typeof AuthenticatedSellerProductsRoute
+  AuthenticatedSellerStoreRoute: typeof AuthenticatedSellerStoreRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -337,6 +587,18 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAddressesRoute: AuthenticatedAddressesRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedOrdersRoute: AuthenticatedOrdersRoute,
+  AuthenticatedAdminBannersRoute: AuthenticatedAdminBannersRoute,
+  AuthenticatedAdminCategoriesRoute: AuthenticatedAdminCategoriesRoute,
+  AuthenticatedAdminCouponsRoute: AuthenticatedAdminCouponsRoute,
+  AuthenticatedAdminOrdersRoute: AuthenticatedAdminOrdersRoute,
+  AuthenticatedAdminProductsRoute: AuthenticatedAdminProductsRoute,
+  AuthenticatedAdminRolesRoute: AuthenticatedAdminRolesRoute,
+  AuthenticatedAdminStoresRoute: AuthenticatedAdminStoresRoute,
+  AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
+  AuthenticatedSellerAnalyticsRoute: AuthenticatedSellerAnalyticsRoute,
+  AuthenticatedSellerOrdersRoute: AuthenticatedSellerOrdersRoute,
+  AuthenticatedSellerProductsRoute: AuthenticatedSellerProductsRoute,
+  AuthenticatedSellerStoreRoute: AuthenticatedSellerStoreRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
