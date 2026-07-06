@@ -4,8 +4,8 @@ import { StaticPage } from "@/components/site/static-page";
 export const Route = createFileRoute("/help")({
   head: () => ({
     meta: [
-      { title: "Help Center · KaramaMarket" },
-      { name: "description", content: "Answers to common questions about ordering, delivery, returns, and selling on KaramaMarket." },
+      { title: "Help Center · eBurundi Market" },
+      { name: "description", content: "Answers to common questions about ordering, delivery, returns, and selling on eBurundi Market." },
     ],
   }),
   component: () => (

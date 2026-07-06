@@ -9,11 +9,11 @@ export const Route = createFileRoute("/")({
   component: HomePage,
   head: () => ({
     meta: [
-      { title: "KaramaMarket — Burundi's trusted multi-vendor marketplace" },
+      { title: "eBurundi Market — Burundi's trusted multi-vendor marketplace" },
       {
         name: "description",
         content:
-          "Shop electronics, fashion, beauty, groceries and more from trusted Burundian sellers on KaramaMarket.",
+          "Shop electronics, fashion, beauty, groceries and more from trusted Burundian sellers on eBurundi Market.",
       },
     ],
   }),
@@ -308,7 +308,7 @@ function HomePage() {
                 name: "Eric M.",
               },
               {
-                quote: "Easy checkout with Lumicash. Highly recommend KaramaMarket.",
+                quote: "Easy checkout with Lumicash. Highly recommend eBurundi Market.",
                 name: "Sandrine K.",
               },
             ].map((t) => (

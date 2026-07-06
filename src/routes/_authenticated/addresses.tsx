@@ -7,7 +7,7 @@ import { useRoles } from "@/hooks/use-roles";
 import { navFor, roleLabel } from "@/lib/dashboard-nav";
 
 export const Route = createFileRoute("/_authenticated/addresses")({
-  head: () => ({ meta: [{ title: "Addresses · KaramaMarket" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Addresses · eBurundi Market" }, { name: "robots", content: "noindex" }] }),
   component: AddressesPage,
 });
 

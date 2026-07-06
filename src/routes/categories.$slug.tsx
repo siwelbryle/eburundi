@@ -13,7 +13,7 @@ export const Route = createFileRoute("/categories/$slug")({
   },
   component: CategoryPage,
   head: ({ loaderData }) => ({
-    meta: [{ title: loaderData ? `${loaderData.category.name} · KaramaMarket` : "Category" }],
+    meta: [{ title: loaderData ? `${loaderData.category.name} · eBurundi Market` : "Category" }],
   }),
   notFoundComponent: () => (
     <div className="flex min-h-screen flex-col">

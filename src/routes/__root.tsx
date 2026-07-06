@@ -87,15 +87,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Soko Burundi — Multi-Vendor Marketplace" },
+      { title: "eBurundi Market — Multi-Vendor Marketplace" },
       {
         name: "description",
         content:
-          "Soko Burundi is Burundi's premier multi-vendor marketplace. Discover thousands of products from trusted local sellers and international brands.",
+          "eBurundi Market is Burundi's premier multi-vendor marketplace. Discover thousands of products from trusted local sellers and international brands.",
       },
-      { name: "author", content: "Soko Burundi" },
+      { name: "author", content: "eBurundi Market" },
       { name: "theme-color", content: "#CE1126" },
-      { property: "og:title", content: "Soko Burundi — Multi-Vendor Marketplace" },
+      { property: "og:title", content: "eBurundi Market — Multi-Vendor Marketplace" },
       {
         property: "og:description",
         content:

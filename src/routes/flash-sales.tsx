@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 export const Route = createFileRoute("/flash-sales")({
   head: () => ({
     meta: [
-      { title: "Flash Sales · KaramaMarket" },
-      { name: "description", content: "Limited-time deals from KaramaMarket sellers. Grab them before they're gone." },
+      { title: "Flash Sales · eBurundi Market" },
+      { name: "description", content: "Limited-time deals from eBurundi Market sellers. Grab them before they're gone." },
     ],
   }),
   component: FlashSalesPage,
@@ -28,7 +28,7 @@ function FlashSalesPage() {
           </span>
           <h1 className="text-4xl font-bold tracking-tight">Flash Sales</h1>
           <p className="max-w-2xl text-lg text-muted-foreground">
-            Hand-picked deals from KaramaMarket sellers. New drops every day — while stocks last.
+            Hand-picked deals from eBurundi Market sellers. New drops every day — while stocks last.
           </p>
           <Button asChild variant="outline"><Link to="/products">Browse all products</Link></Button>
         </div>

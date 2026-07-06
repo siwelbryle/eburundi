@@ -4,19 +4,19 @@ import { StaticPage } from "@/components/site/static-page";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About · KaramaMarket" },
-      { name: "description", content: "KaramaMarket is Burundi's trusted multi-vendor marketplace connecting local sellers to shoppers nationwide." },
-      { property: "og:title", content: "About KaramaMarket" },
+      { title: "About · eBurundi Market" },
+      { name: "description", content: "eBurundi Market is Burundi's trusted multi-vendor marketplace connecting local sellers to shoppers nationwide." },
+      { property: "og:title", content: "About eBurundi Market" },
       { property: "og:description", content: "Burundi's trusted multi-vendor marketplace." },
     ],
   }),
   component: () => (
     <StaticPage
-      title="About KaramaMarket"
+      title="About eBurundi Market"
       subtitle="Burundi's trusted multi-vendor marketplace — built at home, for everyone."
     >
       <p>
-        KaramaMarket exists to give Burundian sellers a modern place to build their business online,
+        eBurundi Market exists to give Burundian sellers a modern place to build their business online,
         and to give shoppers a reliable way to discover local products, compare prices, and receive
         their orders quickly.
       </p>
