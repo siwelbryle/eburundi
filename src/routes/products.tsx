@@ -14,7 +14,7 @@ export const Route = createFileRoute("/products")({
     sort: (s.sort as string) || "featured",
   }),
   component: ProductsPage,
-  head: () => ({ meta: [{ title: "All Products · KaramaMarket" }] }),
+  head: () => ({ meta: [{ title: "All Products · eBurundi Market" }] }),
 });
 
 function ProductsPage() {

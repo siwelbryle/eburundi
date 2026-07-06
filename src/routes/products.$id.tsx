@@ -18,7 +18,7 @@ export const Route = createFileRoute("/products/$id")({
   component: ProductDetail,
   head: ({ loaderData }) => ({
     meta: [
-      { title: loaderData ? `${loaderData.product.title} · KaramaMarket` : "Product · KaramaMarket" },
+      { title: loaderData ? `${loaderData.product.title} · eBurundi Market` : "Product · eBurundi Market" },
       loaderData && { name: "description", content: loaderData.product.description },
     ].filter(Boolean) as { title?: string; name?: string; content?: string }[],
   }),

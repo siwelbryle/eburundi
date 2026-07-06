@@ -38,7 +38,7 @@ export function SiteFooter() {
         <div className="space-y-3">
           <Logo />
           <p className="max-w-xs text-sm text-muted-foreground">
-            KaramaMarket — Burundi's trusted multi-vendor marketplace. Local sellers, real reviews, fast delivery.
+            eBurundi Market — Burundi's trusted multi-vendor marketplace. Local sellers, real reviews, fast delivery.
           </p>
           <div className="flex gap-1.5 pt-2">
             <span className="h-2 w-8 rounded-full bg-primary" />
@@ -66,7 +66,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} KaramaMarket. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} eBurundi Market. All rights reserved.</p>
           <p>Made in Burundi 🇧🇮</p>
         </div>
       </div>

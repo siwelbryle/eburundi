@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PlaceholderDashboardPage } from "@/components/dashboard/placeholder-page";
 
 export const Route = createFileRoute("/_authenticated/admin/users")({
-  head: () => ({ meta: [{ title: "Users · KaramaMarket" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Users · eBurundi Market" }, { name: "robots", content: "noindex" }] }),
   component: () => (
     <PlaceholderDashboardPage
       title="Users"

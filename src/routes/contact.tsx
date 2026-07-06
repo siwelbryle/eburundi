@@ -10,8 +10,8 @@ import type { FormEvent } from "react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact · KaramaMarket" },
-      { name: "description", content: "Get in touch with the KaramaMarket team." },
+      { title: "Contact · eBurundi Market" },
+      { name: "description", content: "Get in touch with the eBurundi Market team." },
     ],
   }),
   component: ContactPage,

@@ -6,7 +6,7 @@ import { STORES, PRODUCTS } from "@/lib/catalog";
 
 export const Route = createFileRoute("/stores/")({
   component: StoresIndex,
-  head: () => ({ meta: [{ title: "Sellers · KaramaMarket" }, { name: "description", content: "Discover verified Burundian sellers on KaramaMarket." }] }),
+  head: () => ({ meta: [{ title: "Sellers · eBurundi Market" }, { name: "description", content: "Discover verified Burundian sellers on eBurundi Market." }] }),
 });
 
 function StoresIndex() {
