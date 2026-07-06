@@ -2,16 +2,16 @@ import { Link } from "@tanstack/react-router";
 
 export function Logo({ className = "" }: { className?: string }) {
   return (
-    <Link to="/" className={`inline-flex items-center gap-2 font-display font-bold ${className}`}>
+    <Link to="/" className={`inline-flex items-center gap-2 font-display font-extrabold ${className}`}>
       <span
         aria-hidden
-        className="grid h-9 w-9 place-items-center rounded-lg text-primary-foreground shadow-elegant"
-        style={{ background: "var(--gradient-primary)" }}
+        className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground text-lg shadow-elegant"
       >
-        <span className="text-lg">S</span>
+        K
       </span>
-      <span className="text-xl tracking-tight">
-        Soko<span className="text-primary">Burundi</span>
+      <span className="text-2xl tracking-tight leading-none">
+        <span className="text-foreground">Karama</span>
+        <span className="text-success">Market</span>
       </span>
     </Link>
   );
