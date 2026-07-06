@@ -32,7 +32,7 @@ export function SiteFooter() {
       </div>
       <div className="border-t">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground md:flex-row">
-          <p>© {new Date().getFullYear()} Soko Burundi. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} KaramaMarket. All rights reserved.</p>
           <p>Made in Burundi 🇧🇮</p>
         </div>
       </div>
