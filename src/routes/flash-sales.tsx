@@ -35,7 +35,7 @@ function FlashSalesPage() {
       </section>
       <main className="mx-auto max-w-7xl px-4 py-10">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {deals.map((p) => <ProductCard key={p.id} product={p} />)}
+          {deals.map((p) => <ProductCard key={p.id} p={p} />)}
         </div>
       </main>
       <SiteFooter />
