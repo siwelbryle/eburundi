@@ -7,10 +7,10 @@ export function Logo({ className = "" }: { className?: string }) {
         aria-hidden
         className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground text-lg shadow-elegant"
       >
-        K
+        e
       </span>
       <span className="text-2xl tracking-tight leading-none">
-        <span className="text-foreground">Karama</span>
+        <span className="text-foreground">eBurundi</span>
         <span className="text-success">Market</span>
       </span>
     </Link>
