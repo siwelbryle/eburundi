@@ -41,7 +41,7 @@ function ProductsPage() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              navigate({ search: (prev) => ({ ...prev, q: search }) });
+              navigate({ search: (prev: any) => ({ ...prev, q: search }) });
             }}
             className="flex gap-2"
           >
@@ -56,7 +56,7 @@ function ProductsPage() {
               <h3 className="mb-3 text-sm font-bold uppercase tracking-wide">Categories</h3>
               <div className="space-y-1">
                 <button
-                  onClick={() => navigate({ search: (p) => ({ ...p, category: "" }) })}
+                  onClick={() => navigate({ search: (p: any) => ({ ...p, category: "" }) })}
                   className={`block w-full rounded px-2 py-1.5 text-left text-sm hover:bg-muted ${!category ? "bg-muted font-semibold" : ""}`}
                 >
                   All
@@ -64,7 +64,7 @@ function ProductsPage() {
                 {CATEGORIES.map((c) => (
                   <button
                     key={c.slug}
-                    onClick={() => navigate({ search: (p) => ({ ...p, category: c.slug }) })}
+                    onClick={() => navigate({ search: (p: any) => ({ ...p, category: c.slug }) })}
                     className={`flex w-full items-center gap-2 rounded px-2 py-1.5 text-left text-sm hover:bg-muted ${category === c.slug ? "bg-muted font-semibold" : ""}`}
                   >
                     <span>{c.emoji}</span> {c.name}
@@ -76,7 +76,7 @@ function ProductsPage() {
               <h3 className="mb-3 text-sm font-bold uppercase tracking-wide">Sort</h3>
               <select
                 value={sort}
-                onChange={(e) => navigate({ search: (p) => ({ ...p, sort: e.target.value }) })}
+                onChange={(e) => navigate({ search: (p: any) => ({ ...p, sort: e.target.value }) })}
                 className="w-full rounded border bg-background px-2 py-1.5 text-sm"
               >
                 <option value="featured">Featured</option>
