@@ -149,22 +149,12 @@ export function SiteHeader() {
             <Link to="/flash-sales" className="inline-flex items-center gap-1.5 text-primary transition hover:opacity-80">
               <span>⚡</span> Flash Sales
             </Link>
-            {CATEGORIES.map((c) => (
-              <Link
-                key={c.slug}
-                to="/categories/$slug"
-                params={{ slug: c.slug }}
-                className="inline-flex items-center gap-1.5 text-foreground/80 transition hover:text-primary"
-              >
-                <span>{c.emoji}</span>
-                <span>{c.name}</span>
-              </Link>
-            ))}
             <Link to="/stores" className="ml-auto inline-flex items-center gap-1.5 text-foreground/80 transition hover:text-primary">
               Sellers
             </Link>
           </nav>
         </div>
+      </div>
     </header>
   );
 }
