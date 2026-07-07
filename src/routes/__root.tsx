@@ -87,7 +87,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "eBurundi Market — Multi-Vendor Marketplace" },
+      { title: "eBurundi Market — Burundi's trusted multi-vendor marketplace" },
       {
         name: "description",
         content:
@@ -95,7 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "eBurundi Market" },
       { name: "theme-color", content: "#CE1126" },
-      { property: "og:title", content: "eBurundi Market — Multi-Vendor Marketplace" },
+      { property: "og:title", content: "eBurundi Market — Burundi's trusted multi-vendor marketplace" },
       {
         property: "og:description",
         content:
@@ -103,6 +103,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "eBurundi Market — Burundi's trusted multi-vendor marketplace" },
+      { name: "description", content: "Shop electronics, fashion, beauty, groceries and more from trusted Burundian sellers on eBurundi Market." },
+      { property: "og:description", content: "Shop electronics, fashion, beauty, groceries and more from trusted Burundian sellers on eBurundi Market." },
+      { name: "twitter:description", content: "Shop electronics, fashion, beauty, groceries and more from trusted Burundian sellers on eBurundi Market." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/38c04365-9c1f-4c8b-8ef1-d53ea8860184/id-preview-fd0bc863--5256921a-2328-4658-ade6-6d3d5a9a3a68.lovable.app-1783338363563.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/38c04365-9c1f-4c8b-8ef1-d53ea8860184/id-preview-fd0bc863--5256921a-2328-4658-ade6-6d3d5a9a3a68.lovable.app-1783338363563.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
