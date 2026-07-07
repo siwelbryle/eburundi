@@ -22,7 +22,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "Dashboard · eBurundi Market" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Dashboard · EBM" }, { name: "robots", content: "noindex" }] }),
   component: DashboardPage,
 });
 

@@ -17,8 +17,8 @@ export const Route = createFileRoute("/auth")({
   validateSearch: authSearchSchema,
   head: () => ({
     meta: [
-      { title: "Sign in · eBurundi Market" },
-      { name: "description", content: "Sign in or create an account on eBurundi Market." },
+      { title: "Sign in · EBM" },
+      { name: "description", content: "Sign in or create an account on EBM." },
       { name: "robots", content: "noindex" },
     ],
   }),
@@ -58,7 +58,7 @@ function AuthPage() {
             <span className="h-1.5 w-16 rounded-full bg-white/20" />
           </div>
         </div>
-        <p className="text-xs opacity-70">© {new Date().getFullYear()} eBurundi Market</p>
+        <p className="text-xs opacity-70">© {new Date().getFullYear()} EBM</p>
       </div>
 
       {/* Right panel */}
@@ -80,7 +80,7 @@ function AuthPage() {
             </TabsContent>
           </Tabs>
           <p className="mt-6 text-center text-xs text-muted-foreground">
-            By continuing, you agree to eBurundi Market's{" "}
+            By continuing, you agree to EBM's{" "}
             <Link to="/" className="underline">Terms</Link> and{" "}
             <Link to="/" className="underline">Privacy Policy</Link>.
           </p>

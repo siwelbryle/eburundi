@@ -8,7 +8,7 @@ import { fmtFbu, getProduct } from "@/lib/catalog";
 
 export const Route = createFileRoute("/cart")({
   component: CartPage,
-  head: () => ({ meta: [{ title: "Cart · eBurundi Market" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Cart · EBM" }, { name: "robots", content: "noindex" }] }),
 });
 
 function CartPage() {

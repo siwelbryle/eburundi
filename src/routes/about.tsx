@@ -4,19 +4,19 @@ import { StaticPage } from "@/components/site/static-page";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About · eBurundi Market" },
-      { name: "description", content: "eBurundi Market is Burundi's trusted multi-vendor marketplace connecting local sellers to shoppers nationwide." },
-      { property: "og:title", content: "About eBurundi Market" },
+      { title: "About · EBM" },
+      { name: "description", content: "EBM is Burundi's trusted multi-vendor marketplace connecting local sellers to shoppers nationwide." },
+      { property: "og:title", content: "About EBM" },
       { property: "og:description", content: "Burundi's trusted multi-vendor marketplace." },
     ],
   }),
   component: () => (
     <StaticPage
-      title="About eBurundi Market"
+      title="About EBM"
       subtitle="Burundi's trusted multi-vendor marketplace — built at home, for everyone."
     >
       <p>
-        eBurundi Market exists to give Burundian sellers a modern place to build their business online,
+        EBM exists to give Burundian sellers a modern place to build their business online,
         and to give shoppers a reliable way to discover local products, compare prices, and receive
         their orders quickly.
       </p>

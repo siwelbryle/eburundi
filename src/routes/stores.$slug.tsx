@@ -14,7 +14,7 @@ export const Route = createFileRoute("/stores/$slug")({
   },
   component: StoreDetail,
   head: ({ loaderData }) => ({
-    meta: [{ title: loaderData ? `${loaderData.store.name} · eBurundi Market` : "Store · eBurundi Market" }],
+    meta: [{ title: loaderData ? `${loaderData.store.name} · EBM` : "Store · EBM" }],
   }),
   notFoundComponent: () => (
     <div className="flex min-h-screen flex-col">
