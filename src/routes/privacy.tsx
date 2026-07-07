@@ -4,8 +4,8 @@ import { StaticPage } from "@/components/site/static-page";
 export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
-      { title: "Privacy Policy · eBurundi Market" },
-      { name: "description", content: "How eBurundi Market collects, uses, and protects your personal information." },
+      { title: "Privacy Policy · EBM" },
+      { name: "description", content: "How EBM collects, uses, and protects your personal information." },
     ],
   }),
   component: () => (

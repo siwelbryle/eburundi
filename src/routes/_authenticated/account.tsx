@@ -9,7 +9,7 @@ import { useRoles } from "@/hooks/use-roles";
 import { navFor, roleLabel } from "@/lib/dashboard-nav";
 
 export const Route = createFileRoute("/_authenticated/account")({
-  head: () => ({ meta: [{ title: "Account · eBurundi Market" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Account · EBM" }, { name: "robots", content: "noindex" }] }),
   component: AccountPage,
 });
 

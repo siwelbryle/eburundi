@@ -1,4 +1,4 @@
-# eBurundi Market
+# EBM
 
 Burundi's multi-vendor marketplace — a production-grade storefront, seller
 back-office, and admin console built on the Lovable stack.
@@ -197,4 +197,4 @@ service-role keys — they are not accessible on Lovable Cloud anyway.
 
 ---
 
-© eBurundi Market — Made in Burundi 🇧🇮
+© EBM — Made in Burundi 🇧🇮

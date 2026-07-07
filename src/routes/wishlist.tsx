@@ -9,7 +9,7 @@ import { getProduct } from "@/lib/catalog";
 
 export const Route = createFileRoute("/wishlist")({
   component: WishlistPage,
-  head: () => ({ meta: [{ title: "Wishlist · eBurundi Market" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Wishlist · EBM" }, { name: "robots", content: "noindex" }] }),
 });
 
 function WishlistPage() {
