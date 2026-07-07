@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+import { ChevronDown, Menu } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Heart, LayoutDashboard, LogOut, Package, Search, ShoppingCart, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -115,27 +117,38 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {/* Category strip */}
+      {/* Category strip — wrap menu */}
       <div className="border-t">
-        <div className="mx-auto max-w-7xl overflow-x-auto px-4">
-          <nav className="flex items-center gap-6 whitespace-nowrap py-3 text-sm font-medium">
+        <div className="mx-auto max-w-7xl px-4">
+          <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 py-3 text-sm font-medium">
+            <Popover>
+              <PopoverTrigger asChild>
+                <button className="inline-flex items-center gap-1.5 rounded-md bg-primary px-3 py-1.5 font-semibold text-primary-foreground transition hover:bg-primary/90">
+                  <Menu className="h-4 w-4" /> All Categories <ChevronDown className="h-4 w-4" />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent align="start" className="w-[min(92vw,720px)] p-3">
+                <div className="grid grid-cols-2 gap-1 sm:grid-cols-3 md:grid-cols-4">
+                  {CATEGORIES.map((c) => (
+                    <Link
+                      key={c.slug}
+                      to="/categories/$slug"
+                      params={{ slug: c.slug }}
+                      className="inline-flex items-center gap-2 rounded-md px-2 py-2 text-sm transition hover:bg-muted"
+                    >
+                      <span className="text-lg">{c.emoji}</span>
+                      <span className="truncate">{c.name}</span>
+                    </Link>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
             <Link to="/products" search={{ category: "", q: "", sort: "featured" }} className="inline-flex items-center gap-1.5 text-foreground/80 transition hover:text-primary">
               All Products
             </Link>
-            <Link to="/products" search={{ category: "", q: "", sort: "featured" }} className="inline-flex items-center gap-1.5 text-primary transition">
+            <Link to="/flash-sales" className="inline-flex items-center gap-1.5 text-primary transition hover:opacity-80">
               <span>⚡</span> Flash Sales
             </Link>
-            {CATEGORIES.map((c) => (
-              <Link
-                key={c.slug}
-                to="/categories/$slug"
-                params={{ slug: c.slug }}
-                className="inline-flex items-center gap-1.5 text-foreground/80 transition hover:text-primary"
-              >
-                <span>{c.emoji}</span>
-                <span>{c.name}</span>
-              </Link>
-            ))}
             <Link to="/stores" className="ml-auto inline-flex items-center gap-1.5 text-foreground/80 transition hover:text-primary">
               Sellers
             </Link>
