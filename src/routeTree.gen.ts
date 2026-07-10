@@ -29,6 +29,9 @@ import { Route as StoresIndexRouteImport } from './routes/stores.index'
 import { Route as StoresSlugRouteImport } from './routes/stores.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
+import { Route as ApiNotifySignupRouteImport } from './routes/api/notify-signup'
+import { Route as ApiHelpChatRouteImport } from './routes/api/help-chat'
+import { Route as ApiContactRouteImport } from './routes/api/contact'
 import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated/orders'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAddressesRouteImport } from './routes/_authenticated/addresses'
@@ -40,6 +43,7 @@ import { Route as AuthenticatedSellerAnalyticsRouteImport } from './routes/_auth
 import { Route as AuthenticatedAdminUsersRouteImport } from './routes/_authenticated/admin/users'
 import { Route as AuthenticatedAdminStoresRouteImport } from './routes/_authenticated/admin/stores'
 import { Route as AuthenticatedAdminRolesRouteImport } from './routes/_authenticated/admin/roles'
+import { Route as AuthenticatedAdminRoleRequestsRouteImport } from './routes/_authenticated/admin/role-requests'
 import { Route as AuthenticatedAdminProductsRouteImport } from './routes/_authenticated/admin/products'
 import { Route as AuthenticatedAdminOrdersRouteImport } from './routes/_authenticated/admin/orders'
 import { Route as AuthenticatedAdminCouponsRouteImport } from './routes/_authenticated/admin/coupons'
@@ -145,6 +149,21 @@ const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
   path: '/categories/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiNotifySignupRoute = ApiNotifySignupRouteImport.update({
+  id: '/api/notify-signup',
+  path: '/api/notify-signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiHelpChatRoute = ApiHelpChatRouteImport.update({
+  id: '/api/help-chat',
+  path: '/api/help-chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedOrdersRoute = AuthenticatedOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -205,6 +224,12 @@ const AuthenticatedAdminRolesRoute = AuthenticatedAdminRolesRouteImport.update({
   path: '/admin/roles',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAdminRoleRequestsRoute =
+  AuthenticatedAdminRoleRequestsRouteImport.update({
+    id: '/admin/role-requests',
+    path: '/admin/role-requests',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminProductsRoute =
   AuthenticatedAdminProductsRouteImport.update({
     id: '/admin/products',
@@ -256,6 +281,9 @@ export interface FileRoutesByFullPath {
   '/addresses': typeof AuthenticatedAddressesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/orders': typeof AuthenticatedOrdersRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/help-chat': typeof ApiHelpChatRoute
+  '/api/notify-signup': typeof ApiNotifySignupRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
@@ -265,6 +293,7 @@ export interface FileRoutesByFullPath {
   '/admin/coupons': typeof AuthenticatedAdminCouponsRoute
   '/admin/orders': typeof AuthenticatedAdminOrdersRoute
   '/admin/products': typeof AuthenticatedAdminProductsRoute
+  '/admin/role-requests': typeof AuthenticatedAdminRoleRequestsRoute
   '/admin/roles': typeof AuthenticatedAdminRolesRoute
   '/admin/stores': typeof AuthenticatedAdminStoresRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
@@ -293,6 +322,9 @@ export interface FileRoutesByTo {
   '/addresses': typeof AuthenticatedAddressesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/orders': typeof AuthenticatedOrdersRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/help-chat': typeof ApiHelpChatRoute
+  '/api/notify-signup': typeof ApiNotifySignupRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
@@ -302,6 +334,7 @@ export interface FileRoutesByTo {
   '/admin/coupons': typeof AuthenticatedAdminCouponsRoute
   '/admin/orders': typeof AuthenticatedAdminOrdersRoute
   '/admin/products': typeof AuthenticatedAdminProductsRoute
+  '/admin/role-requests': typeof AuthenticatedAdminRoleRequestsRoute
   '/admin/roles': typeof AuthenticatedAdminRolesRoute
   '/admin/stores': typeof AuthenticatedAdminStoresRoute
   '/admin/users': typeof AuthenticatedAdminUsersRoute
@@ -332,6 +365,9 @@ export interface FileRoutesById {
   '/_authenticated/addresses': typeof AuthenticatedAddressesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/orders': typeof AuthenticatedOrdersRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/help-chat': typeof ApiHelpChatRoute
+  '/api/notify-signup': typeof ApiNotifySignupRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
@@ -341,6 +377,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/coupons': typeof AuthenticatedAdminCouponsRoute
   '/_authenticated/admin/orders': typeof AuthenticatedAdminOrdersRoute
   '/_authenticated/admin/products': typeof AuthenticatedAdminProductsRoute
+  '/_authenticated/admin/role-requests': typeof AuthenticatedAdminRoleRequestsRoute
   '/_authenticated/admin/roles': typeof AuthenticatedAdminRolesRoute
   '/_authenticated/admin/stores': typeof AuthenticatedAdminStoresRoute
   '/_authenticated/admin/users': typeof AuthenticatedAdminUsersRoute
@@ -371,6 +408,9 @@ export interface FileRouteTypes {
     | '/addresses'
     | '/dashboard'
     | '/orders'
+    | '/api/contact'
+    | '/api/help-chat'
+    | '/api/notify-signup'
     | '/categories/$slug'
     | '/products/$id'
     | '/stores/$slug'
@@ -380,6 +420,7 @@ export interface FileRouteTypes {
     | '/admin/coupons'
     | '/admin/orders'
     | '/admin/products'
+    | '/admin/role-requests'
     | '/admin/roles'
     | '/admin/stores'
     | '/admin/users'
@@ -408,6 +449,9 @@ export interface FileRouteTypes {
     | '/addresses'
     | '/dashboard'
     | '/orders'
+    | '/api/contact'
+    | '/api/help-chat'
+    | '/api/notify-signup'
     | '/categories/$slug'
     | '/products/$id'
     | '/stores/$slug'
@@ -417,6 +461,7 @@ export interface FileRouteTypes {
     | '/admin/coupons'
     | '/admin/orders'
     | '/admin/products'
+    | '/admin/role-requests'
     | '/admin/roles'
     | '/admin/stores'
     | '/admin/users'
@@ -446,6 +491,9 @@ export interface FileRouteTypes {
     | '/_authenticated/addresses'
     | '/_authenticated/dashboard'
     | '/_authenticated/orders'
+    | '/api/contact'
+    | '/api/help-chat'
+    | '/api/notify-signup'
     | '/categories/$slug'
     | '/products/$id'
     | '/stores/$slug'
@@ -455,6 +503,7 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/coupons'
     | '/_authenticated/admin/orders'
     | '/_authenticated/admin/products'
+    | '/_authenticated/admin/role-requests'
     | '/_authenticated/admin/roles'
     | '/_authenticated/admin/stores'
     | '/_authenticated/admin/users'
@@ -481,6 +530,9 @@ export interface RootRouteChildren {
   ShippingRoute: typeof ShippingRoute
   TermsRoute: typeof TermsRoute
   WishlistRoute: typeof WishlistRoute
+  ApiContactRoute: typeof ApiContactRoute
+  ApiHelpChatRoute: typeof ApiHelpChatRoute
+  ApiNotifySignupRoute: typeof ApiNotifySignupRoute
   CategoriesSlugRoute: typeof CategoriesSlugRoute
   StoresSlugRoute: typeof StoresSlugRoute
   StoresIndexRoute: typeof StoresIndexRoute
@@ -628,6 +680,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CategoriesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/notify-signup': {
+      id: '/api/notify-signup'
+      path: '/api/notify-signup'
+      fullPath: '/api/notify-signup'
+      preLoaderRoute: typeof ApiNotifySignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/help-chat': {
+      id: '/api/help-chat'
+      path: '/api/help-chat'
+      fullPath: '/api/help-chat'
+      preLoaderRoute: typeof ApiHelpChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/orders': {
       id: '/_authenticated/orders'
       path: '/orders'
@@ -705,6 +778,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminRolesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/admin/role-requests': {
+      id: '/_authenticated/admin/role-requests'
+      path: '/admin/role-requests'
+      fullPath: '/admin/role-requests'
+      preLoaderRoute: typeof AuthenticatedAdminRoleRequestsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/products': {
       id: '/_authenticated/admin/products'
       path: '/admin/products'
@@ -753,6 +833,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminCouponsRoute: typeof AuthenticatedAdminCouponsRoute
   AuthenticatedAdminOrdersRoute: typeof AuthenticatedAdminOrdersRoute
   AuthenticatedAdminProductsRoute: typeof AuthenticatedAdminProductsRoute
+  AuthenticatedAdminRoleRequestsRoute: typeof AuthenticatedAdminRoleRequestsRoute
   AuthenticatedAdminRolesRoute: typeof AuthenticatedAdminRolesRoute
   AuthenticatedAdminStoresRoute: typeof AuthenticatedAdminStoresRoute
   AuthenticatedAdminUsersRoute: typeof AuthenticatedAdminUsersRoute
@@ -772,6 +853,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminCouponsRoute: AuthenticatedAdminCouponsRoute,
   AuthenticatedAdminOrdersRoute: AuthenticatedAdminOrdersRoute,
   AuthenticatedAdminProductsRoute: AuthenticatedAdminProductsRoute,
+  AuthenticatedAdminRoleRequestsRoute: AuthenticatedAdminRoleRequestsRoute,
   AuthenticatedAdminRolesRoute: AuthenticatedAdminRolesRoute,
   AuthenticatedAdminStoresRoute: AuthenticatedAdminStoresRoute,
   AuthenticatedAdminUsersRoute: AuthenticatedAdminUsersRoute,
@@ -813,6 +895,9 @@ const rootRouteChildren: RootRouteChildren = {
   ShippingRoute: ShippingRoute,
   TermsRoute: TermsRoute,
   WishlistRoute: WishlistRoute,
+  ApiContactRoute: ApiContactRoute,
+  ApiHelpChatRoute: ApiHelpChatRoute,
+  ApiNotifySignupRoute: ApiNotifySignupRoute,
   CategoriesSlugRoute: CategoriesSlugRoute,
   StoresSlugRoute: StoresSlugRoute,
   StoresIndexRoute: StoresIndexRoute,

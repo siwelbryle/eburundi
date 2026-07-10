@@ -1,6 +1,6 @@
 import {
   BarChart3, Box, Heart, LayoutDashboard, MapPin, Package, Settings,
-  ShieldCheck, ShoppingBag, Star, Store, Tag, Ticket, Users,
+  ShieldCheck, ShoppingBag, Star, Store, Tag, Ticket, UserCheck, Users,
 } from "lucide-react";
 import type { DashboardNavItem } from "@/components/dashboard/dashboard-shell";
 import type { AppRole } from "@/hooks/use-roles";
@@ -41,6 +41,7 @@ export const ADMIN_NAV: DashboardNavItem[] = [
   { title: "Coupons", url: "/admin/coupons", icon: Ticket },
   { title: "Banners", url: "/admin/banners", icon: BarChart3 },
   { title: "Roles & permissions", url: "/admin/roles", icon: ShieldCheck },
+  { title: "Role requests", url: "/admin/role-requests", icon: UserCheck },
   { title: "Settings", url: "/account", icon: Settings },
 ];
 
