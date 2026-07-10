@@ -29,6 +29,9 @@ import { Route as StoresIndexRouteImport } from './routes/stores.index'
 import { Route as StoresSlugRouteImport } from './routes/stores.$slug'
 import { Route as ProductsIdRouteImport } from './routes/products.$id'
 import { Route as CategoriesSlugRouteImport } from './routes/categories.$slug'
+import { Route as ApiNotifySignupRouteImport } from './routes/api/notify-signup'
+import { Route as ApiHelpChatRouteImport } from './routes/api/help-chat'
+import { Route as ApiContactRouteImport } from './routes/api/contact'
 import { Route as AuthenticatedOrdersRouteImport } from './routes/_authenticated/orders'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAddressesRouteImport } from './routes/_authenticated/addresses'
@@ -145,6 +148,21 @@ const CategoriesSlugRoute = CategoriesSlugRouteImport.update({
   path: '/categories/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiNotifySignupRoute = ApiNotifySignupRouteImport.update({
+  id: '/api/notify-signup',
+  path: '/api/notify-signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiHelpChatRoute = ApiHelpChatRouteImport.update({
+  id: '/api/help-chat',
+  path: '/api/help-chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiContactRoute = ApiContactRouteImport.update({
+  id: '/api/contact',
+  path: '/api/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedOrdersRoute = AuthenticatedOrdersRouteImport.update({
   id: '/orders',
   path: '/orders',
@@ -256,6 +274,9 @@ export interface FileRoutesByFullPath {
   '/addresses': typeof AuthenticatedAddressesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/orders': typeof AuthenticatedOrdersRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/help-chat': typeof ApiHelpChatRoute
+  '/api/notify-signup': typeof ApiNotifySignupRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
@@ -293,6 +314,9 @@ export interface FileRoutesByTo {
   '/addresses': typeof AuthenticatedAddressesRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/orders': typeof AuthenticatedOrdersRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/help-chat': typeof ApiHelpChatRoute
+  '/api/notify-signup': typeof ApiNotifySignupRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
@@ -332,6 +356,9 @@ export interface FileRoutesById {
   '/_authenticated/addresses': typeof AuthenticatedAddressesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/orders': typeof AuthenticatedOrdersRoute
+  '/api/contact': typeof ApiContactRoute
+  '/api/help-chat': typeof ApiHelpChatRoute
+  '/api/notify-signup': typeof ApiNotifySignupRoute
   '/categories/$slug': typeof CategoriesSlugRoute
   '/products/$id': typeof ProductsIdRoute
   '/stores/$slug': typeof StoresSlugRoute
@@ -371,6 +398,9 @@ export interface FileRouteTypes {
     | '/addresses'
     | '/dashboard'
     | '/orders'
+    | '/api/contact'
+    | '/api/help-chat'
+    | '/api/notify-signup'
     | '/categories/$slug'
     | '/products/$id'
     | '/stores/$slug'
@@ -408,6 +438,9 @@ export interface FileRouteTypes {
     | '/addresses'
     | '/dashboard'
     | '/orders'
+    | '/api/contact'
+    | '/api/help-chat'
+    | '/api/notify-signup'
     | '/categories/$slug'
     | '/products/$id'
     | '/stores/$slug'
@@ -446,6 +479,9 @@ export interface FileRouteTypes {
     | '/_authenticated/addresses'
     | '/_authenticated/dashboard'
     | '/_authenticated/orders'
+    | '/api/contact'
+    | '/api/help-chat'
+    | '/api/notify-signup'
     | '/categories/$slug'
     | '/products/$id'
     | '/stores/$slug'
@@ -481,6 +517,9 @@ export interface RootRouteChildren {
   ShippingRoute: typeof ShippingRoute
   TermsRoute: typeof TermsRoute
   WishlistRoute: typeof WishlistRoute
+  ApiContactRoute: typeof ApiContactRoute
+  ApiHelpChatRoute: typeof ApiHelpChatRoute
+  ApiNotifySignupRoute: typeof ApiNotifySignupRoute
   CategoriesSlugRoute: typeof CategoriesSlugRoute
   StoresSlugRoute: typeof StoresSlugRoute
   StoresIndexRoute: typeof StoresIndexRoute
@@ -626,6 +665,27 @@ declare module '@tanstack/react-router' {
       path: '/categories/$slug'
       fullPath: '/categories/$slug'
       preLoaderRoute: typeof CategoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/notify-signup': {
+      id: '/api/notify-signup'
+      path: '/api/notify-signup'
+      fullPath: '/api/notify-signup'
+      preLoaderRoute: typeof ApiNotifySignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/help-chat': {
+      id: '/api/help-chat'
+      path: '/api/help-chat'
+      fullPath: '/api/help-chat'
+      preLoaderRoute: typeof ApiHelpChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/contact': {
+      id: '/api/contact'
+      path: '/api/contact'
+      fullPath: '/api/contact'
+      preLoaderRoute: typeof ApiContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated/orders': {
@@ -813,6 +873,9 @@ const rootRouteChildren: RootRouteChildren = {
   ShippingRoute: ShippingRoute,
   TermsRoute: TermsRoute,
   WishlistRoute: WishlistRoute,
+  ApiContactRoute: ApiContactRoute,
+  ApiHelpChatRoute: ApiHelpChatRoute,
+  ApiNotifySignupRoute: ApiNotifySignupRoute,
   CategoriesSlugRoute: CategoriesSlugRoute,
   StoresSlugRoute: StoresSlugRoute,
   StoresIndexRoute: StoresIndexRoute,
