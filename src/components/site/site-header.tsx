@@ -84,12 +84,21 @@ export function SiteHeader() {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Account">
+                <Button variant="ghost" size="icon" aria-label="Account" className="relative">
                   <User className="h-5 w-5" />
+                  {iAmOnline && (
+                    <span className="absolute bottom-1 right-1 h-2 w-2 rounded-full bg-emerald-500 ring-2 ring-background" aria-label="Online" />
+                  )}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuLabel className="truncate">{user.email}</DropdownMenuLabel>
+                <DropdownMenuLabel className="truncate">
+                  <div className="truncate">{user.email}</div>
+                  <div className="mt-0.5 flex items-center gap-1.5 text-[11px] font-normal text-emerald-600">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Online · {onlineCount} {onlineCount === 1 ? "user" : "users"} now
+                  </div>
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                   <Link to="/dashboard" className="flex items-center gap-2">
