@@ -16,6 +16,7 @@ import {
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
 import { useAuth } from "@/hooks/use-auth";
+import { usePresence } from "@/hooks/use-presence";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { CATEGORIES } from "@/lib/catalog";
@@ -23,10 +24,12 @@ import { useCart, useWishlist } from "@/hooks/use-shop-store";
 
 export function SiteHeader() {
   const { user } = useAuth();
+  const { onlineCount, isOnline } = usePresence();
   const navigate = useNavigate();
   const cart = useCart();
   const wish = useWishlist();
   const [q, setQ] = useState("");
+  const iAmOnline = user ? isOnline(user.id) : false;
 
   const signOut = async () => {
     await supabase.auth.signOut();
