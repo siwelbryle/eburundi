@@ -175,31 +175,34 @@ export function CrudTable<R extends Row>({
           <DialogHeader><DialogTitle>{creating ? `New ${title.replace(/s$/, "")}` : `Edit ${title.replace(/s$/, "")}`}</DialogTitle></DialogHeader>
           {editing && (
             <div className="grid gap-4 sm:grid-cols-2">
-              {fields.filter((f) => !(creating && f.hiddenOnCreate)).map((f) => (
+              {fields.filter((f) => !(creating && f.hiddenOnCreate)).map((f) => {
+                const val = (editing as Record<string, unknown>)[f.key];
+                const set = (v: unknown) => setEditing({ ...(editing as Partial<R>), [f.key]: v } as Partial<R>);
+                return (
                 <div key={f.key} className={f.type === "textarea" ? "sm:col-span-2" : ""}>
                   <Label htmlFor={f.key}>{f.label}{f.required && <span className="text-destructive">*</span>}</Label>
                   {f.type === "textarea" ? (
-                    <Textarea id={f.key} value={String(editing[f.key] ?? "")} onChange={(e) => setEditing({ ...editing, [f.key]: e.target.value })} rows={3} placeholder={f.placeholder} />
+                    <Textarea id={f.key} value={String(val ?? "")} onChange={(e) => set(e.target.value)} rows={3} placeholder={f.placeholder} />
                   ) : f.type === "select" ? (
-                    <Select value={String(editing[f.key] ?? "")} onValueChange={(v) => setEditing({ ...editing, [f.key]: v })}>
+                    <Select value={String(val ?? "")} onValueChange={(v) => set(v)}>
                       <SelectTrigger id={f.key}><SelectValue placeholder={f.placeholder || "Select…"} /></SelectTrigger>
                       <SelectContent>{f.options?.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}</SelectContent>
                     </Select>
                   ) : f.type === "boolean" ? (
                     <div className="flex h-10 items-center gap-2">
-                      <input id={f.key} type="checkbox" checked={!!editing[f.key]} onChange={(e) => setEditing({ ...editing, [f.key]: e.target.checked })} className="h-4 w-4" />
+                      <input id={f.key} type="checkbox" checked={!!val} onChange={(e) => set(e.target.checked)} className="h-4 w-4" />
                       <span className="text-sm text-muted-foreground">{f.hint || "Enabled"}</span>
                     </div>
                   ) : f.type === "number" ? (
-                    <Input id={f.key} type="number" step="any" value={String(editing[f.key] ?? "")} onChange={(e) => setEditing({ ...editing, [f.key]: e.target.value === "" ? null : Number(e.target.value) })} placeholder={f.placeholder} />
+                    <Input id={f.key} type="number" step="any" value={val == null ? "" : String(val)} onChange={(e) => set(e.target.value === "" ? null : Number(e.target.value))} placeholder={f.placeholder} />
                   ) : f.type === "datetime" ? (
-                    <Input id={f.key} type="datetime-local" value={editing[f.key] ? String(editing[f.key]).slice(0, 16) : ""} onChange={(e) => setEditing({ ...editing, [f.key]: e.target.value ? new Date(e.target.value).toISOString() : null })} />
+                    <Input id={f.key} type="datetime-local" value={val ? String(val).slice(0, 16) : ""} onChange={(e) => set(e.target.value ? new Date(e.target.value).toISOString() : null)} />
                   ) : (
-                    <Input id={f.key} value={String(editing[f.key] ?? "")} onChange={(e) => setEditing({ ...editing, [f.key]: e.target.value })} placeholder={f.placeholder} />
+                    <Input id={f.key} value={String(val ?? "")} onChange={(e) => set(e.target.value)} placeholder={f.placeholder} />
                   )}
                   {f.hint && f.type !== "boolean" && <p className="mt-1 text-xs text-muted-foreground">{f.hint}</p>}
                 </div>
-              ))}
+              );})}
             </div>
           )}
           <DialogFooter>
