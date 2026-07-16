@@ -87,8 +87,8 @@ export function CrudTable<R extends Row>({
     return rows.filter((r) => String(r[searchColumn] ?? "").toLowerCase().includes(needle));
   }, [rows, q, searchColumn]);
 
-  const openCreate = () => { setEditing({ ...(defaultRow as R | undefined) }); setCreating(true); };
-  const openEdit = (r: R) => { setEditing({ ...r }); setCreating(false); };
+  const openCreate = () => { setEditing({ ...(defaultRow as Partial<R>) } as Partial<R>); setCreating(true); };
+  const openEdit = (r: R) => { setEditing({ ...r } as Partial<R>); setCreating(false); };
 
   const save = async () => {
     if (!editing) return;
