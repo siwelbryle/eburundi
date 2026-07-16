@@ -24,7 +24,7 @@ function AdminProducts() {
 
   return (
     <DashboardShell roleLabel={roleLabel(primaryRole)} groups={navFor(primaryRole)} breadcrumbs={["Dashboard","Admin","Products"]}>
-      <CrudTable
+      <CrudTable<Record<string, unknown> & { id?: string }>
         title="Products"
         table="products"
         searchColumn="name"
