@@ -1,45 +1,61 @@
-## What I'll ship (in order)
 
-### 1. Branding & responsive
-- Set EBM logo as favicon (`public/favicon.png` + `<link>` in `__root.tsx`, delete default `favicon.ico`).
-- Sweep pages that break on mobile: header search + category strip, product grids, dashboard shells, help/contact layouts. Apply the `grid-cols-[minmax(0,1fr)_auto] + min-w-0 + shrink-0` pattern where rows mix text and widgets.
+## Scope
 
-### 2. Diversified mock catalog (`src/lib/catalog.ts`)
-- Expand from 60 → ~80 products with **real, varied Burundi-relevant titles** (kitenge dresses, Isano coffee beans, Bujumbura-brewed honey, solar lamps, phone accessories, textbooks in Kirundi/French, etc.) — no repeating "#N" suffixes.
-- Widen price range **8,000 – 950,000 FBu**, varied discounts, varied ratings/reviews.
-- 10 sellers already exist; distribute products unevenly so some stores feel bigger. Add a few "buyer testimonials" array used on the home page.
+1. All 9 admin pages become real CRUD wired to the database.
+2. Storefront (home, products list, product detail, category, store, flash sales, cart, wishlist) reads from `products` / `categories` / `stores` / `banners` / `coupons` in the database.
+3. Real checkout with **Lumicash mobile-money** as the primary method, plus card and cash-on-delivery as manual options. Orders persist to `orders` + `order_items` with a proper status lifecycle.
 
-### 3. Contact page (`src/routes/contact.tsx`)
-- Phone → `+257 69 393 285`, emails → `eburundimarket@gmail.com` (primary), `siwelbryl@gmail.com` (support).
-- Form submits to a new server route `/api/contact` that sends via **Gmail connector** to `siwelbryl@gmail.com`. Zod-validated (name/email/message, length caps). Requires user to connect Gmail — I'll trigger `standard_connectors--connect` for `google_mail`.
+## 1. Database migration
 
-### 4. Online-presence indicator
-- Supabase Realtime **presence** channel joined in `__root.tsx` when a user is signed in.
-- Small green dot + "Online" text next to the user's avatar in `site-header` when tracked. On store/seller pages, show green dot on seller card when that seller's user_id is present in the channel.
-- New `use-presence.ts` hook exposing `onlineUserIds: Set<string>`.
+Additive migration on the existing tables:
 
-### 5. Signup with account-type picker
-- `/auth` page: after user fills email/password on sign-up, second step asks **"How will you use EBM?"** → Customer / Seller / Store owner (with descriptions).
-- Choice stored in `raw_user_meta_data.requested_role`. `handle_new_user` trigger updated: always grants `customer`; for seller/store_owner it inserts a row into a new `role_requests` table (status='pending') instead of granting.
-- New admin page `/admin/role-requests` lists pending requests with Approve/Deny (approve = insert into `user_roles`; deny = updates status).
-- On signup + on approve/deny, a server function sends a Gmail notification to `siwelbryl@gmail.com` ("New seller request from X" / "Access denied for X — user notified").
+- `products`: ensure `store_id`, `category_id`, `price`, `compare_at_price`, `stock`, `image_url`, `images jsonb`, `is_active`, `rating`, `reviews_count`, `sku`, `slug`. Add missing columns.
+- `orders`: add `payment_method` (`lumicash` | `card` | `cod`), `payment_status` (`pending` | `awaiting_confirmation` | `paid` | `failed` | `refunded`), `payment_ref` (Lumicash transaction ID entered by buyer), `shipping_address jsonb`, `subtotal`, `shipping_fee`, `total`, `currency` default `'BIF'`, `coupon_code`.
+- `order_items`: `order_id`, `product_id`, `title_snapshot`, `unit_price`, `qty`, `store_id`.
+- `site_settings`: add key/value rows for `lumicash_merchant_number`, `lumicash_merchant_name`, `support_email`.
+- Trigger `handle_order_totals` to recompute totals from items.
+- RLS + GRANTs on all touched tables. Buyer sees own orders; seller sees orders containing their store's items; admin sees all.
 
-### 6. Help Center AI + multilingual (`src/routes/help.tsx`)
-- Language switcher: **English / Français / Kirundi**. Static FAQ content translated in a `HELP_CONTENT` dictionary.
-- Embedded AI chat panel using Lovable AI Gateway (`google/gemini-3-flash-preview`) via a `/api/help-chat` streaming server route + `useChat` on the client. System prompt: EBM support assistant, answers in the user's chosen language, cites shipping/returns/selling policies from the FAQ.
-- Professional shell: sidebar categories, search bar over FAQ, sticky AI chat card.
+## 2. Storefront on DB
 
-## Technical details (internal)
+- New `src/lib/products.functions.ts` with public server fns (publishable-key client) — `listProducts({ q, category, sort, storeId, flashOnly, limit })`, `getProduct(id)`, `listCategories()`, `listStores()`, `listBanners()`.
+- Replace `src/lib/catalog.ts` usage in `index.tsx`, `products.tsx`, `products.$id.tsx`, `categories.$slug.tsx`, `stores.$slug.tsx`, `stores.index.tsx`, `flash-sales.tsx`, `wishlist.tsx`, `cart.tsx`, `checkout.tsx`. Keep `fmtFbu` helper.
+- Seed migration inserts ~30 diversified Burundi products across the existing 10 stores + 8 categories + 3 banners.
 
-- **Migrations**: new `role_requests` table (user_id, requested_role, status, note, timestamps) with RLS (owner reads own, admins read/update all), GRANTs, trigger update to `handle_new_user`.
-- **Gmail sending**: use `standard_connectors` gateway (`connector-gateway.lovable.dev/google_mail/gmail/v1/users/me/messages/send`) with base64url RFC2822 body. All sends server-side only. `LOVABLE_API_KEY` + `GOOGLE_MAIL_API_KEY` env.
-- **Server routes** (public-callable): `src/routes/api/contact.ts` (rate-limited by IP + captcha-free honeypot field), `src/routes/api/help-chat.ts` (Lovable AI stream), plus `createServerFn`s for role-request admin actions.
-- **Presence**: single channel `presence:global`, track `{ user_id, joined_at }`, subscribe once in root, expose via context. Cleanup on unmount / sign-out.
-- **Favicon**: derive PNG from existing `ebm-logo.jpg` asset (copy + rename in `public/`).
+## 3. Admin pages (all dynamic)
+
+Each becomes a full CRUD table with create dialog, inline edit, delete confirm, search, pagination. Wired via `createServerFn` + `requireSupabaseAuth` + `has_role('admin')` guard.
+
+- `/admin/users` — list profiles + roles, grant/revoke roles, disable user (soft flag).
+- `/admin/stores` — approve/suspend, edit name/slug/description/owner.
+- `/admin/products` — full CRUD, image URL, stock, price, flash sale toggle.
+- `/admin/orders` — list with filters, view items, update `status` and `payment_status`, mark Lumicash `paid`.
+- `/admin/categories` — CRUD + parent, slug, icon.
+- `/admin/coupons` — CRUD, code, percent/amount, expiry, min total, active.
+- `/admin/banners` — CRUD, image, link, position, active window.
+- `/admin/roles` — grant/revoke `super_admin`/`admin`/`store_owner`/`seller` for any user.
+- `/admin/role-requests` — already exists, wire the approve/deny to the new server fns (email via Gmail connector when linked, no-op otherwise).
+
+Shared building block: `<AdminDataTable>` component (columns, actions, dialog form) so each page is small.
+
+Seller dashboard pages (`/seller/store`, `/seller/products`, `/seller/orders`, `/seller/analytics`) become dynamic on the same server fns, scoped by the seller's `store_id`.
+
+## 4. Real Lumicash checkout
+
+Lumicash has no public API for merchants, so this is a **manual-confirmation flow** that matches how real Burundi merchants take Lumicash:
+
+1. Checkout page shows the merchant Lumicash number + amount + a generated `order_ref` (e.g. `EBM-4F2A9C`).
+2. Buyer sends the amount to the merchant number from their Lumicash app, then pastes the Lumicash transaction ID and phone number into the form.
+3. `createOrder` server fn writes the order with `payment_method='lumicash'`, `payment_status='awaiting_confirmation'`, and `payment_ref` = the transaction ID.
+4. Admin sees it in `/admin/orders`, checks their Lumicash statement, clicks **Mark paid** → status flips to `paid` and buyer sees "confirmed" on `/orders`.
+5. Same server fn also supports `payment_method='cod'` (skips ref, sets `payment_status='pending'`) and `payment_method='card'` (also `pending`; card capture would need Stripe — clearly labelled "not automated yet").
+
+Merchant number and support email are read from `site_settings`, editable by admin.
 
 ## Out of scope for this batch
-- Moving products into the DB (you chose to keep mock catalog).
-- Marketing/bulk emails.
-- Full i18n of the entire site (only Help Center is translated per your request).
 
-Reply "go" and I'll build it end to end. If you want to trim (e.g. skip presence or split into two shipments), tell me which parts to keep.
+- Automated card capture (would need Stripe; user picked Lumicash).
+- SMS notifications to buyers on payment confirmation (needs a paid SMS provider).
+- Full i18n on new admin screens.
+
+Reply "go" and I'll ship it end to end.

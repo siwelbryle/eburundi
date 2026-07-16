@@ -378,11 +378,16 @@ export type Database = {
       }
       orders: {
         Row: {
+          admin_note: string | null
           coupon_code: string | null
           created_at: string
           currency: string
           id: string
           order_number: string
+          payment_method: string
+          payment_phone: string | null
+          payment_ref: string | null
+          payment_status: string
           shipping: number
           shipping_address: Json | null
           status: Database["public"]["Enums"]["order_status"]
@@ -393,11 +398,16 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          admin_note?: string | null
           coupon_code?: string | null
           created_at?: string
           currency?: string
           id?: string
           order_number?: string
+          payment_method?: string
+          payment_phone?: string | null
+          payment_ref?: string | null
+          payment_status?: string
           shipping?: number
           shipping_address?: Json | null
           status?: Database["public"]["Enums"]["order_status"]
@@ -408,11 +418,16 @@ export type Database = {
           user_id: string
         }
         Update: {
+          admin_note?: string | null
           coupon_code?: string | null
           created_at?: string
           currency?: string
           id?: string
           order_number?: string
+          payment_method?: string
+          payment_phone?: string | null
+          payment_ref?: string | null
+          payment_status?: string
           shipping?: number
           shipping_address?: Json | null
           status?: Database["public"]["Enums"]["order_status"]
